@@ -13,10 +13,11 @@ def RodzielaniePDF(SciezkaPliku,SciezkaZapisania,Podzial):
     Podzial(list) - Lista skaldajaca sie z dwuelementowych list bedocych podzialami stron na nowe pliki pdf
     '''
     for przedial in Podzial:
-        with PdfWriter( os.path.join(SciezkaZapisania,Path(SciezkaPliku).stem) + '_' + str(przedial[0]+1) + '-' + str(przedial[1]+1) + '.pdf') as pdf:
+        with PdfWriter( os.path.join(SciezkaZapisania,Path(SciezkaPliku).stem) + '_' + str(przedial[0]+1) + '-' + str(przedial[1]) + '.pdf') as pdf:
             pdf.append(SciezkaPliku,(przedial[0],przedial[1]))
+            pdf.close()
 
-RodzielaniePDF("D:\Programowanie\Semestr2\Lista2\Fichtenholz_RachunekRozniczkowy.pdf","D:\Programowanie\Semestr2\Lista2",
+RodzielaniePDF("D:\Programowanie\Semestr2\Lista2\pan-tadeusz.pdf","D:\Programowanie\Semestr2\Lista2",
 Rodzialy)
 
 

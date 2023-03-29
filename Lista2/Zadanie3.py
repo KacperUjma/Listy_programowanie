@@ -11,9 +11,9 @@ def Kopia(SciezkiFolderow,SciezkaZapisania):
     '''
     for Folder in SciezkiFolderow:
         with ZipFile(SciezkaZapisania + '\\' + str(date.today()) + '-' + os.path.basename(Folder) + '.zip','w') as Kopia:
-            for FolderName, subFolders, FileNames in os.walk(Folder):
-                for FileName in FileNames:
-                    FilePath = os.path.join(FolderName,FileName)
-                    Kopia.write(FilePath, os.path.basename(FilePath))
+            for NazwaFolderu, PodFoldery, NazwyPlikow in os.walk(Folder):
+                for NazwaPliku in NazwyPlikow:
+                    SciezkaPliku = os.path.join(NazwaFolderu,NazwaPliku)
+                    Kopia.write(SciezkaPliku, os.path.basename(SciezkaPliku))
 
 Kopia(['D:\Programowanie\Semestr2\Lista2\Folder do zip','D:\Programowanie\Semestr2\Lista2\Folder do zip2'],'D:\Programowanie\Semestr2\Lista2')
