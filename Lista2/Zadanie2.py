@@ -1,5 +1,6 @@
 from PIL import Image
 import sys
+from pathlib import Path
 
 def Miniaturka(Rozmiar = (128,128),SciezkaOtwarcia='D:\Programowanie\Semestr2\Lista2\Obrazek.jpg',
     SciezkaMiniatury='D:\Programowanie\Semestr2\Lista2',NazwaMiniatry=None):
@@ -19,8 +20,7 @@ def Miniaturka(Rozmiar = (128,128),SciezkaOtwarcia='D:\Programowanie\Semestr2\Li
         sys.exit("Probujesz zmiejszyc obrazek do rozmiarow wiekszych niz sam obrazek")
 
     if NazwaMiniatry == None:
-        temp = SciezkaOtwarcia.split('\\')[-1]
-        NazwaMiniatry = temp.split('.')[0] + '_Miniatura.jpg'
+        NazwaMiniatry = Path(SciezkaOtwarcia).stem + '_Miniatura.jpg'
     else: NazwaMiniatry += '.jpg'
 
     im.thumbnail(Rozmiar)
