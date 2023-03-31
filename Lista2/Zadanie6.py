@@ -1,8 +1,7 @@
 import string
 import re
 
-a = "12-4"
-print(len(a))
+a = "9999*59"
 def DodawaniePodKreske(Liczby):
     '''
     Funkcja tworzy zapis dodawania lub odejmowania pod kreske danego zadania
@@ -19,9 +18,11 @@ def DodawaniePodKreske(Liczby):
         elif znak =='-':
             Lista.append(Liczby[i:index])
             i = index
+        elif znak =='*':
+            Lista.append(Liczby[i:index])
+            i = index +1
         elif index == len(Liczby)-1:
             Lista.append(Liczby[i:])
-    print(Lista)
     if not ("*" in Znaki or "*-" in Znaki) : 
         for i in Lista:
             suma += int(i)
@@ -31,7 +32,17 @@ def DodawaniePodKreske(Liczby):
     else: 
         for i in range(len(Lista)):
             print (str(Lista[i]).center(30-len(str(Lista[i]))))
-        print("*---------\n".center(30-9))
+        print("*---------".center(30-9))
+        Dodwanie = 0
+        Suma = 0
+        for i in range(len(str(Lista[-1]))):
+            Dodwanie = (int(Lista[0])*int(str(Lista[-1])[-(i+1)]))
+            a = 30-i-len(str(Dodwanie))
+            print(str(Dodwanie).center(a-i))
+            Suma += Dodwanie*(10**i)
+        print("+---------".center(30-9))
+        print(str(Suma).center(30-len(str(Suma))))
+
 
 DodawaniePodKreske(a)
 

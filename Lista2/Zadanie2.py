@@ -22,10 +22,10 @@ def Miniaturka(Rozmiar = (128,128),SciezkaOtwarcia='D:\Programowanie\Semestr2\Li
     if NazwaMiniatry == None:
         NazwaMiniatry = Path(SciezkaOtwarcia).stem + '_Miniatura.jpg'
     else: NazwaMiniatry += '.jpg'
-
-    im.thumbnail(Rozmiar)
+    
+    im=im.resize(Rozmiar)
     SciezkaMiniatury += "\\"+NazwaMiniatry
     im.save(SciezkaMiniatury)
 
-Miniaturka()
+Miniaturka(Rozmiar=(102,70))
 
