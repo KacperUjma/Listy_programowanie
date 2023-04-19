@@ -10,6 +10,7 @@ def QrCodeMaker(Dane,SciezkaZapisania,Nazwa="QrCode"):
     ScizekaZapisania(str) - Sciezka do miejscsca gdzie obrazek ma zostac zapisany
     Nazwa(str) - Nazwa zapisania pliku kodu qr
     """
+    print(Dane)
     qr = qrcode.QRCode()
     qr.add_data(Dane)
     qr = qr.make_image(fill_color = "black",back_color = "red")
@@ -26,7 +27,7 @@ def QRCodeDecoder(SciezkaZapisania):
     qrim = cv2.imread(SciezkaZapisania)
     qr = cv2.QRCodeDetector()
     Dane = qr.detectAndDecodeMulti(qrim)
-    print(str(Dane[1]))
+    print(Dane[1][0])
 
 
 QrCodeMaker("abbbbcasd","D:\Programowanie\Semestr2\Lista3")

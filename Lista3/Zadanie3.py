@@ -1,6 +1,6 @@
-from PyPDF2 import PdfWriter
-from pathlib import Path
+from PyPDF2 import PdfWriter,PdfReader
 import os
+import sys
 
 Pliki = ["D:\Programowanie\Semestr2\Lista3\pan-tadeusz_1-10.pdf","D:\Programowanie\Semestr2\Lista3\pan-tadeusz_31-40.pdf","D:\Programowanie\Semestr2\Lista3\pan-tadeusz_11-25.pdf"]
 
@@ -12,6 +12,7 @@ def LaczeniePDF(SciezkiPlikow,SciezkaZapisania,Nazwa="ZlaczonyPDF"):
     SciezkaZapisania(str) - Sciezka zapisania pliku bez nazwy pliku
     Nazwa(str) - Nazwa utworzonego pliku pdf
     '''
+                    
     with PdfWriter(os.path.join(SciezkaZapisania + "\\" + Nazwa + ".pdf")) as pdf:
         for Plik in SciezkiPlikow:
             pdf.append(Plik)

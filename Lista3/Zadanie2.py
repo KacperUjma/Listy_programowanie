@@ -1,8 +1,11 @@
 import os
 
-def ZamianaZnakuKoncaLinii(SciezkaPliku,SciezkaZapisania ,Nowyznak):
+def ZamianaZnakuKoncaLinii(SciezkaPliku,Nowyznak):
+    '''
+    Funkcja zmienia znak konca lini z unix na CR LF i odwrotnie
+    '''
     Nowyznak = Nowyznak.lower()
-    if Nowyznak == 'widnows':
+    if Nowyznak == 'windows':
         Nowyznak = '\r\n'
     elif Nowyznak == 'unix':
         Nowyznak = '\n'
@@ -10,9 +13,17 @@ def ZamianaZnakuKoncaLinii(SciezkaPliku,SciezkaZapisania ,Nowyznak):
     with open(SciezkaPliku,'r',newline='') as Odczyt:
         Zawartosc = Odczyt.read()
 
-    Zawartosc = Zawartosc.replace('\r\n','\n').replace('\n',Nowyznak)
+    print(Zawartosc)
 
-    with open(os.path.join(SciezkaZapisania,'Plik_ze_Zmiana_Znaku.txt'),'w',newline=None) as Plik:
-        Plik.write(Zawartosc)
+    if '\r\n' in Zawartosc:
+        NowaZawartosc = Zawartosc.replace('\r\n','\n')
+    elif '\n' in Zawartosc:
+        NowaZawartosc = Zawartosc.replace('\n','\r\n')
+    
+    with open(SciezkaPliku,'w',newline='') as Plik:
+        Plik.write(NowaZawartosc)
 
-ZamianaZnakuKoncaLinii('D:\Programowanie\Semestr2\Lista3\\file-sample_100kB.txt','D:\Programowanie\Semestr2\\Lista3','Unix')
+    print(NowaZawartosc)
+    
+
+ZamianaZnakuKoncaLinii('D:\Programowanie\Semestr2\Lista3\\file-sample_100kB.txt','windows')

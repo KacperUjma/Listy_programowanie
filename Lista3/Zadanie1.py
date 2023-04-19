@@ -4,7 +4,7 @@ from datetime import date
 from datetime import date , timedelta , datetime
 
 
-def Kopia(SciezkiFolderow = None, SciezkaZapisania = 'C:\\Backup', Rozszerzenie = None):
+def Kopia(SciezkiFolderow = None, SciezkaZapisania = 'C:\\Backup', Rozszerzenie = None,Czas=3):
     """
     Funkcja tworzy skompresowaną kopię plików o podanym rozszerzeniu modyfikowanyh w ostatnich 3 dniach w formacie ZIP.
     Input:
@@ -12,15 +12,16 @@ def Kopia(SciezkiFolderow = None, SciezkaZapisania = 'C:\\Backup', Rozszerzenie 
     SciezkaZapisania(str) - Ścieżka miejsca, gdzie mają być zapisane skompresowane pliki.
     Rozszerzenie(str) - Rozszerzenie pliku, który ma być skopiowany.
     """
-    with ZipFile(os.path.join(SciezkaZapisania,"copy-{data}".format(data=date.today())), 'w') as Kopia:
+    with ZipFile(os.path.join(SciezkaZapisania,"copy-{data}.zip".format(data=date.today())), 'w') as Kopia:
         for Folder in SciezkiFolderow:
             basename = os.path.basename(Folder)
             for NazwaFolderu, PodFoldery, NazwyPlikow in os.walk(Folder):
                 for NazwaPliku in NazwyPlikow:
-                    DataModyfikacji = os.path.getatime(os.path.join(NazwaFolderu,NazwaPliku))
+                    DataModyfikacji = os.path.getmtime(os.path.join(NazwaFolderu,NazwaPliku))
+                    print(DataModyfikacji)
                     DataModyfikacji = datetime.fromtimestamp(DataModyfikacji)
-                    print(DataModyfikacji,NazwaPliku)
-                    if DataModyfikacji >= datetime.today() - timedelta(days=3):        
+                    print(DataModyfikacji,NazwaPliku,datetime.today() - timedelta(days=Czas))
+                    if DataModyfikacji >= datetime.today() - timedelta(days=Czas):        
                         if NazwaPliku.endswith(Rozszerzenie):
                             SciezkaPliku = os.path.join(basename, os.path.relpath(os.path.join(NazwaFolderu, NazwaPliku), start=Folder))
                             Kopia.write(os.path.join(NazwaFolderu, NazwaPliku), arcname=SciezkaPliku)
