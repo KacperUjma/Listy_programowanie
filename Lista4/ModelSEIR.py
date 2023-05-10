@@ -25,7 +25,7 @@ beta = args.beta
 sigma = args.sigma
 gamma = args.gamma
 
-Time = np.linspace(0, 100, 100)
+Time = np.linspace(1, 100, 100)
 
 def SEIR(SEIR, t, beta, sigma, gamma):
     S, E, I, R = SEIR
@@ -43,16 +43,16 @@ Rozwiazanie = odeint(SEIR,SEIR0,Time,args=Parametry)
 Dane = []
 
 Dane.append(odeint(SEIR,SEIR0,Time,args=Parametry))
-
+# β to wskaźnik infekcjii (tempo jej rozprzestrzeniania się),
 Parametry = (2*beta,sigma,gamma)
 
 Dane.append(odeint(SEIR,SEIR0,Time,args=Parametry))
-
+# σ to wskaźnik ikubacji (średni czas inkubacji to 1/σ),
 Parametry = (beta,2*sigma,gamma)
 
 Dane.append(odeint(SEIR,SEIR0,Time,args=Parametry))
-
-Parametry= (beta,sigma,2*gamma)
+# γ to wskaźnik wyzdrowień (jeśli średni czas infekcji wynosi D, wówczas γ = 1/D).
+Parametry= (beta,sigma,0.5*gamma)
 
 Dane.append(odeint(SEIR,SEIR0,Time,args=Parametry))
 
