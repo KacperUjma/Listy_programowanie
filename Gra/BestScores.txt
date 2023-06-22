@@ -1,0 +1,10 @@
+1. ZawodnikA 95
+2. ZawodnikC 92
+3. ZawodnikH 93
+4. ZawodnikJ 91
+5. ZawodnikF 90
+6. Ja 32
+7. Ja 15
+8. Guest 15
+9. werka 8
+10. Guest 1

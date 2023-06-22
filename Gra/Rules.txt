@@ -1,0 +1,15 @@
+Twoim zadaniem jest zdobycie
+jak najwiekszej liczby monet.
+
+Poruszasz sie od lewej do
+prawej odbijajac sie od scian.
+
+Wciskajac spacje gracz "skacze do gory"
+powstzrymujac spadanie.
+
+Masz mozliwosc przoszenia
+sie miedzy gora a dolem, po porstu przelatujac.
+
+Unikaj kolcy, trafiajac na nie umierasz!
+
+Wciskajac p pazujesz gre
